@@ -1,0 +1,5 @@
+package com.hyunwjd.umc9th.domain.member.enums;
+
+public enum SocialType {
+    LOCAL, GOOGLE, KAKAO, NAVER, GITHUB, APPLE
+}
