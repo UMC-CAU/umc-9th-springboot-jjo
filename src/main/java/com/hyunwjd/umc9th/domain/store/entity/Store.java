@@ -3,6 +3,7 @@ package com.hyunwjd.umc9th.domain.store.entity;
 
 import com.hyunwjd.umc9th.domain.location.Location;
 import com.hyunwjd.umc9th.domain.member.entity.Member;
+import com.hyunwjd.umc9th.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,7 +19,7 @@ import lombok.*;
                 @Index(name = "idx_store_name", columnList = "store_name"),
                 @Index(name = "idx_store_location", columnList = "location_id")
         })
-public class Store {
+public class Store extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "store_id")

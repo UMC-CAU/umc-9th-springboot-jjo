@@ -1,5 +1,6 @@
 package com.hyunwjd.umc9th.domain.review.entity;
 
+import com.hyunwjd.umc9th.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,7 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "review_comment")
-public class ReviewComment {
+public class ReviewComment extends BaseEntity {
 
 
     @Id

@@ -3,9 +3,12 @@ package com.hyunwjd.umc9th.domain.member.entity;
 import com.hyunwjd.umc9th.domain.location.Location;
 import com.hyunwjd.umc9th.domain.member.enums.SocialType;
 import com.hyunwjd.umc9th.domain.member.enums.MemberStatus;
+import com.hyunwjd.umc9th.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import com.hyunwjd.umc9th.domain.member.enums.Gender;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,7 +21,7 @@ import java.util.List;
 @Getter
 @Table(name = "member")
 
-public class Member {
+public class Member extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,7 +31,8 @@ public class Member {
 
     @Column(name = "gender")
     @Enumerated(EnumType.STRING)
-    private Gender gender;
+    @Builder.Default
+    private Gender gender = Gender.NONE;
 
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;

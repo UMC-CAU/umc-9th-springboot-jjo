@@ -1,7 +1,7 @@
 package com.hyunwjd.umc9th.domain.mission.entity;
 
-import com.hyunwjd.umc9th.domain.BaseTimeEntity;
 import com.hyunwjd.umc9th.domain.store.entity.Store;
+import com.hyunwjd.umc9th.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
                 @Index(name = "idx_mission_deadline", columnList = "deadline"),
                 @Index(name = "idx_mission_store", columnList = "store_id")
         })
-public class Mission extends BaseTimeEntity {
+public class Mission extends BaseEntity {
 
 
     @Id
