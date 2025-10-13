@@ -1,6 +1,7 @@
 package com.hyunwjd.umc9th.domain.member.entity;
 
 import com.hyunwjd.umc9th.domain.location.Location;
+import com.hyunwjd.umc9th.domain.member.entity.mapping.MemberFood;
 import com.hyunwjd.umc9th.domain.member.enums.SocialType;
 import com.hyunwjd.umc9th.domain.member.enums.MemberStatus;
 import com.hyunwjd.umc9th.global.entity.BaseEntity;
@@ -63,4 +64,13 @@ public class Member extends BaseEntity {
 
     @Column(name = "point")
     private Integer point;
+
+    // 연관 관계
+    // Member - Food (N:1)
+    @OneToMany(mappedBy = "member")
+    private List<MemberFood> memberFoods = new ArrayList<>();
+
+    // Member Term 도 만들어야하나ㅗ바...
+
+
 }

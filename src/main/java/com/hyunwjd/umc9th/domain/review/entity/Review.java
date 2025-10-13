@@ -24,21 +24,11 @@ public class Review extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "review_id")
     private Long id;
 
 
     @Column(name = "review_text", columnDefinition = "TEXT")
     private String text;
-
-
-    @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt;
-
-
-    @Column(name = "deleted_at")
-    private LocalDateTime deletedAt;
-
 
     @Column(name = "star_grade", nullable = false)
     private Integer starGrade;
@@ -61,7 +51,8 @@ public class Review extends BaseEntity {
     private List<ReviewPhoto> photos = new ArrayList<>();
 
 
-    // ── ReviewComment 관계 (1:N)
-    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ReviewComment> comments = new ArrayList<>();
+    // ── ReviewComment 관계 (1:1 -> 워크북대로)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "review_comment_id")
+    private ReviewComment reviewComment;
 }
