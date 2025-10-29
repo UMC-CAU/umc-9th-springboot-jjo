@@ -17,15 +17,12 @@ public class ReviewComment extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "review_comment_id")
     private Long id;
 
+    @Column(columnDefinition = "TEXT")
+    private String content;
 
-    @Column(name = "review_comment_text", columnDefinition = "TEXT")
-    private String text;
-
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "review_id", nullable = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "review_id", nullable = false, unique = true)
     private Review review;
 }

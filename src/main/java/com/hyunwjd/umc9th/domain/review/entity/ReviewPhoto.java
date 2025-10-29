@@ -16,13 +16,10 @@ public class ReviewPhoto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "review_photo_id")
     private Long id;
 
-
-    @Column(name = "review_photo_url", length = 255, nullable = false)
+    @Column(nullable = false)
     private String url;
-
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "review_id", nullable = false)
