@@ -34,25 +34,28 @@ public class Review extends BaseEntity {
     private Integer starGrade;
 
 
-    // ── FK: store_id
+    // FK: store_id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id", nullable = false)
     private Store store;
 
 
-    // ── FK: user_id → Member
+    // FK: member_id → Member
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
 
-    // ── ReviewPhoto 관계 (1:N)
+    //FK: ReviewPhoto 관계 (1:N)
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ReviewPhoto> photos = new ArrayList<>();
 
 
-    // ── ReviewComment 관계 (1:1 -> 워크북대로)
-    @OneToOne(fetch = FetchType.LAZY)
+    //FK: ReviewComment 관계 (1:1 -> 워크북대로)
+    @OneToOne(mappedBy = "review",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     @JoinColumn(name = "review_comment_id")
     private ReviewComment reviewComment;
 }
