@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 
 @Getter
-@Setter
+//@Setter <--무분별한 사용 지양
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,12 +31,15 @@ public class Mission extends BaseEntity {
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
+    @Setter
     @Column(name = "deadline", nullable = false)
     private LocalDateTime deadline;
 
+    @Setter
     @Column(name = "complete_condition", length = 255, nullable = false)
     private String completeCondition;
 
+    @Setter
     @Column(name = "point", nullable = false)
     private Integer point;
 

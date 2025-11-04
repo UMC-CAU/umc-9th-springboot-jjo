@@ -22,6 +22,7 @@ public class ReviewComment extends BaseEntity {
     @Column(columnDefinition = "TEXT")
     private String content;
 
+    // FK: review_id (Review 테이블과 1:1)
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "review_id", nullable = false, unique = true)
     private Review review;

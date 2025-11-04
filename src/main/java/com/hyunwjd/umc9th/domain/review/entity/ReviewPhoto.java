@@ -21,6 +21,7 @@ public class ReviewPhoto {
     @Column(nullable = false)
     private String url;
 
+    //FK: review_id (Review 테이블과 N:1)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "review_id", nullable = false)
     private Review review;
