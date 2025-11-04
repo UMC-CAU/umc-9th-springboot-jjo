@@ -70,7 +70,8 @@ public class Member extends BaseEntity {
     @OneToMany(mappedBy = "member")
     private List<MemberFood> memberFoods = new ArrayList<>();
 
-    // Member Term 도 만들어야하나ㅗ바...
-
+    // Member - MemberMission (1:N)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<com.hyunwjd.umc9th.domain.mission.mapping.MemberMission> memberMissions = new ArrayList<>();
 
 }

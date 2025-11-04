@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -34,6 +33,7 @@ public class MemberMission {
     @JoinColumn(name = "mission_id", nullable = false)
     private Mission mission;
 
+    @Setter
     @Column(name = "is_complete", nullable = false)
     private boolean isComplete;
 }

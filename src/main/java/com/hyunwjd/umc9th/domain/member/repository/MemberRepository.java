@@ -1,6 +1,7 @@
 package com.hyunwjd.umc9th.domain.member.repository;
 
 import com.hyunwjd.umc9th.domain.member.entity.Member;
+import com.hyunwjd.umc9th.domain.mission.mapping.MemberMission;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
