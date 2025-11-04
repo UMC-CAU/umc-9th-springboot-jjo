@@ -11,10 +11,11 @@ import java.util.Optional;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
-    // 1) 회원 단일 조회 (memberId로)
+    // [조회] 회원 단일 조회 (memberId로)
     Optional<Member> findById(Long memberId);
+    //^^^^^^존재하는 회원인지 검증하기 위해 Optional로 감싸서 반환
 
-    // 2) 회원 + 미션 + 포인트 통계 조회 (JPQL @Query 방식)
+    // [조회] 회원 + 미션 + 포인트 통계 조회 (JPQL @Query 방식)
     @Query("""
         SELECT m
         FROM Member m
@@ -24,6 +25,14 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
         """)
     Optional<Member> findWithMissionsById(@Param("memberId") Long memberId);
 
-    // 3) 회원 존재 여부 확인
+    // [조회] 회원 미션 완료 통계 조회 (완료한 미션 개수, 완료한 미션 개수의 10으로 나눈 나머지)
+    @Query("""
+    SELECT COUNT(DISTINCT mm.mission.id),
+           MOD(COUNT(DISTINCT mm.mission.id), 10)
+    FROM MemberMission mm
+    WHERE mm.member.id = :memberId
+      AND mm.isComplete = true
+""")
+    Object[] findCompletionStatsByMember(@Param("memberId") Long memberId);
     boolean existsByEmail(String email);
 }
