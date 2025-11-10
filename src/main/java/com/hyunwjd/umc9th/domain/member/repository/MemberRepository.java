@@ -15,7 +15,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     Optional<Member> findById(Long memberId);
     //^^^^^^존재하는 회원인지 검증하기 위해 Optional로 감싸서 반환
 
-    // [조회] 회원 + 미션 + 포인트 통계 조회 (JPQL @Query 방식)
+    // [조회] 회원 + 미션 + 포인트 통계 조회
     @Query("""
         SELECT m
         FROM Member m
@@ -34,5 +34,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
       AND mm.isComplete = true
 """)
     Object[] findCompletionStatsByMember(@Param("memberId") Long memberId);
+
+    // [검증] 이메일 존재여부 검사
     boolean existsByEmail(String email);
 }

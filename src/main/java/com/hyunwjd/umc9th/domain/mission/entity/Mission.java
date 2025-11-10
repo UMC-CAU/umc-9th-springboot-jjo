@@ -31,9 +31,6 @@ public class Mission extends BaseEntity {
     @Column(name = "mission_id")
     private Long id;
 
-    @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt;
-
     @Setter
     @Column(name = "deadline", nullable = false)
     private LocalDateTime deadline;
