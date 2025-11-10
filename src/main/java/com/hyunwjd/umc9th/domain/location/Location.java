@@ -17,9 +17,8 @@ public class Location{
     @Column(name = "location_id")
     private Long id;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "City_name", nullable = false)
-    private CityName city;  // 시/도 단위
+    private String city;  // 시/도 단위
 
     @Column(name = "detail_address", length = 100)
     private String detail;          // 상세 주소

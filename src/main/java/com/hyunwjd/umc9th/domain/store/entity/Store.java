@@ -28,16 +28,15 @@ public class Store extends BaseEntity {
     @Column(name = "store_name", length = 10, nullable = false)
     private String name;
 
+    @Column(name = "address", length = 255)
+    private String address;
 
     // manager_id: Member FK
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "manager_id", nullable = false)
     private Member manager;
 
-    @Column(name = "address", length = 255)
-    private String address;
-
-
+    //FK: location_id (Location 테이블과 N:1)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "location_id", nullable = false)
     private Location location;
