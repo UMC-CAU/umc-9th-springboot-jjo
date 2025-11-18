@@ -30,6 +30,9 @@ public class Member extends BaseEntity {
     @Column(name = "name", length = 3, nullable = false)
     private String name;
 
+    @Column(name = "nickname", length = 10, nullable = false)
+    private String nickname;
+
     @Column(name = "gender")
     @Enumerated(EnumType.STRING)
     @Builder.Default

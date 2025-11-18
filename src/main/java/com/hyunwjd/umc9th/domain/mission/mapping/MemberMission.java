@@ -2,8 +2,11 @@ package com.hyunwjd.umc9th.domain.mission.mapping;
 
 import com.hyunwjd.umc9th.domain.member.entity.Member;
 import com.hyunwjd.umc9th.domain.mission.entity.Mission;
+import com.hyunwjd.umc9th.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
@@ -18,7 +21,7 @@ import lombok.*;
         }
         , uniqueConstraints = @UniqueConstraint(name = "uk_member_mission_member_mission", columnNames = {"member_id", "mission_id"})
 )
-public class MemberMission {
+public class MemberMission extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,4 +39,7 @@ public class MemberMission {
     @Setter
     @Column(name = "is_complete", nullable = false)
     private boolean isComplete;
+
+    @Column(name = "completed_at")
+    private LocalDateTime completedAt;
 }
