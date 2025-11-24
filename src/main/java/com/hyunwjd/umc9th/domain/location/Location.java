@@ -1,6 +1,7 @@
 package com.hyunwjd.umc9th.domain.location;
 
 
+import com.hyunwjd.umc9th.domain.location.enums.City;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,8 +18,9 @@ public class Location{
     @Column(name = "location_id")
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "City_name", nullable = false)
-    private String city;  // 시/도 단위
+    private City city;  // 시/도 단위
 
     @Column(name = "detail_address", length = 100)
     private String detail;          // 상세 주소

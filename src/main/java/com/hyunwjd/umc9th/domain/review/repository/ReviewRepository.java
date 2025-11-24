@@ -12,6 +12,8 @@ import java.util.List;
 
 public interface ReviewRepository extends JpaRepository<Review, Long>, ReviewQueryDsl {
 
+
+
     // [조회] 가게별 리뷰 페이지네이션 (기본)
     Page<Review> findByStoreId(Long storeId, Pageable pageable);
 

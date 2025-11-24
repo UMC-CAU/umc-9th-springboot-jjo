@@ -29,8 +29,8 @@ public class MemberResDTO {
         private boolean isComplete;
         private LocalDateTime completedAt;
 
-        private LocalDate createdAt;
-        private LocalDate updateAt;
+        private LocalDateTime createdAt;
+        private LocalDateTime updateAt;
     }
 
     @Getter
@@ -40,5 +40,10 @@ public class MemberResDTO {
             private Long missionCompletionRate; // 미션 달성도
     }
 
-
+    // 회원 가입 응답 DTO
+    @Builder
+    public record JoinDTO(
+            Long memberId,
+            LocalDateTime createAt
+    ){}
 }

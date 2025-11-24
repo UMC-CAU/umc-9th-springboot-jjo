@@ -19,7 +19,7 @@ public class ReviewPhoto {
     private Long id;
 
     @Column(nullable = false)
-    private String url;
+    private String photoUrl;
 
     //FK: review_id (Review 테이블과 N:1)
     @ManyToOne(fetch = FetchType.LAZY)
