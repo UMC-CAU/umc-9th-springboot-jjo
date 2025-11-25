@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/v1/api/members")
+@RequestMapping("api/v1/members")
 public class MemberController {
 
     private final MemberCommandService memberCommandService;
@@ -35,18 +35,6 @@ public class MemberController {
         return ApiResponse.onSuccess(
                 GeneralSuccessCode.OK,
                 statsDTO
-        );
-    }
-
-
-    //회원가입
-    @PostMapping("/signup")
-    public ApiResponse<MemberResDTO.JoinDTO> signup(
-            @RequestBody MemberReqDTO.JoinDTO dto
-            ) {
-        return ApiResponse.onSuccess(
-                MemberSuccessCode.FOUND,
-                memberCommandService.signup(dto)
         );
     }
 }
