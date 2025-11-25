@@ -48,7 +48,7 @@ public class Review extends BaseEntity {
 
     //FK: ReviewPhoto 관계 (1:N)
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ReviewPhoto> photos = new ArrayList<>();
+    private List<ReviewPhoto> photoUrl = new ArrayList<>();
 
 
     //FK: ReviewComment 관계 (1:1 -> 워크북대로)

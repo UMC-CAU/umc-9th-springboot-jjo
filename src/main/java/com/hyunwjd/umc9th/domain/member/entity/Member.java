@@ -8,8 +8,6 @@ import com.hyunwjd.umc9th.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import com.hyunwjd.umc9th.domain.member.enums.Gender;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -30,6 +28,9 @@ public class Member extends BaseEntity {
     @Column(name = "name", length = 3, nullable = false)
     private String name;
 
+    @Column(name = "nickname", length = 10, nullable = false)
+    private String nickname;
+
     @Column(name = "gender")
     @Enumerated(EnumType.STRING)
     @Builder.Default
@@ -37,13 +38,6 @@ public class Member extends BaseEntity {
 
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "location_id" )
-    private Location location;
-
-    @Column(name = "detail_address", length = 100, nullable = false)
-    private String detailAddress;
 
     @Column(name = "email", nullable = false)
     private String email;
@@ -74,4 +68,8 @@ public class Member extends BaseEntity {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<com.hyunwjd.umc9th.domain.mission.mapping.MemberMission> memberMissions = new ArrayList<>();
 
+    // Member - Location (N:1)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "location_id" )
+    private Location location;
 }
