@@ -6,7 +6,6 @@ import com.hyunwjd.umc9th.domain.review.dto.req.ReviewReqDTO;
 import com.hyunwjd.umc9th.domain.review.dto.res.ReviewResDTO;
 import com.hyunwjd.umc9th.domain.review.entity.Review;
 import com.hyunwjd.umc9th.domain.review.service.query.ReviewQueryService;
-import com.hyunwjd.umc9th.domain.review.service.query.ReviewQueryServiceImpl;
 import com.hyunwjd.umc9th.global.apiPayload.ApiResponse;
 import com.hyunwjd.umc9th.global.apiPayload.code.GeneralSuccessCode;
 import lombok.*;
@@ -20,7 +19,7 @@ import java.util.List;
 @RequestMapping("/v1/api")
 public class ReviewController {
 
-    private final ReviewQueryServiceImpl reviewQueryServiceImpl;
+    private final ReviewCommandService reviewCommandService;
     private final ReviewQueryService reviewCommandService;
 
 
@@ -46,7 +45,7 @@ public class ReviewController {
             @RequestParam String type
     ) {
         // Service에게 요청
-        List<Review> result = reviewQueryServiceImpl.searchReview(query, type);
+        List<Review> result = reviewCommandService.searchReview(query, type);
         return result;
     }
 
@@ -58,7 +57,7 @@ public class ReviewController {
             @RequestParam String type
     ) {
         // Service에게 요청
-        List<Review> result = reviewQueryServiceImpl.findMyReviews(memberId, query, type);
+        List<Review> result = reviewCommandService.findMyReviews(memberId, query, type);
         return result;
     }
 }
