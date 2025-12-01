@@ -37,6 +37,7 @@ public class ReviewController implements ReviewControllerDocs {
         return result;
     }
 
+
     //가게의 리뷰 목록 조회
     @GetMapping("/reviews")
     public ApiResponse<ReviewResDTO.ReviewPreViewListDTO> getReviews(

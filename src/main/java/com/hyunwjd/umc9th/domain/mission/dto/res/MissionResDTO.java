@@ -1,19 +1,54 @@
 package com.hyunwjd.umc9th.domain.mission.dto.res;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Builder
 public class MissionResDTO {
-    private Long missionId;
-    private String completeCondition;  // 미션 제목/설명
-    private String storeName;          // 가게 이름
-    private boolean isComplete;        // 진행 여부
-    private LocalDateTime completedAt;     // 완료된 경우만 값, 아니면 null
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    // 1) 미션 리스트에서 개별 미션 Preview 정보
+    @Getter
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MissionPreviewDTO {
+        private Long missionId;
+        private String completeCondition;
+        private String storeName;
+        private boolean isComplete;
+        private LocalDateTime completedAt;
+        private LocalDateTime createdAt;
+        private LocalDateTime updatedAt;
+    }
+
+    // 2) 미션 목록 조회 (페이징 포함)
+    @Getter
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MissionPreviewListDTO {
+        private List<MissionPreviewDTO> missionList;
+        private int listSize;
+        private int totalPage;
+        private long totalElements;
+        private boolean isFirst;
+        private boolean isLast;
+    }
+
+    // 3) 진행 완료로 상태 변경 결과 상세 정보
+    @Getter
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MissionDetailDTO {
+        private Long missionId;
+        private String completeCondition;
+        private String storeName;
+        private boolean isCompleted;
+        private LocalDateTime completedAt;
+        private LocalDateTime createdAt;
+        private LocalDateTime updatedAt;
+    }
 }

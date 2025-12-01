@@ -16,20 +16,17 @@ public class MissionQueryServiceImpl implements MissionQueryService {
     private final MissionRepository missionRepository;
 
     @Override
-    public Page<MissionResDTO> getMyMissions(Long memberId, MissionStatusFilter status, Pageable pageable) {
+    public Page<MissionResDTO.MissionPreviewDTO> getMyMissions(
+            Long memberId,
+            MissionStatusFilter status,
+            Pageable pageable
+    ) {
+        Page<MemberMission> page = switch (status) {
+            case COMPLETED   -> missionRepository.findByMemberIdAndIsCompleted(memberId, true, pageable);
+            case IN_PROGRESS -> missionRepository.findByMemberIdAndIsCompleted(memberId, false, pageable);
+            case ALL         -> missionRepository.findByMemberId(memberId, pageable);
+        };
 
-
-        Page<MemberMission> page = null;
-
-        switch (status) {
-            case COMPLETED ->
-                    page = missionRepository.findByMemberIdAndIsCompleted(memberId, true, pageable);
-            case IN_PROGRESS ->
-                    page = missionRepository.findByMemberIdAndIsCompleted(memberId, false, pageable);
-            case ALL ->
-                    page = missionRepository.findByMemberId(memberId, pageable);
-        }
-
-        return page.map(MissionConverter::toMissionResDTO);
+        return page.map(MissionConverter::toMissionPreviewDTO);
     }
 }

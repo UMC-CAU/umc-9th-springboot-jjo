@@ -21,5 +21,8 @@ public interface MemberMissionRepository extends JpaRepository<MemberMission, Lo
 
     // 미션 도전
     boolean existsByMember_IdAndMission_Id(Long memberId, Long missionId);
+
+    // 미션 완료
+    Optional<MemberMission> findByMemberIdAndMissionId(Long memberId, Long missionId);
 }
 
