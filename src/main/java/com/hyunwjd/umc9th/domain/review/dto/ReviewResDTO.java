@@ -17,21 +17,26 @@ public class ReviewResDTO {
         private Long reviewId;
         private Long storeId;
         private Long memberId;
-        private Integer starGrade;
+        private Float starGrade;
         private String text;
         private LocalDateTime createdAt;
     }
 
-    @Getter
     @Builder
-    @AllArgsConstructor
-    @NoArgsConstructor
-    public static class ReviewPreviewListDTO {
-        ReviewPreviewDTO reviewList;
-        Integer listSize;
-        Integer totalPage;
-        Long totalElements;
-        Boolean isFirst;
-        Boolean isLast;
-    }
+    public record ReviewPreViewListDTO(
+            List<ReviewPreViewDTO> reviewList,
+            Integer listSize,
+            Integer totalPage,
+            Long totalElements,
+            Boolean isFirst,
+            Boolean isLast
+    ){}
+
+    @Builder
+    public record ReviewPreViewDTO(
+            String ownerNickname,
+            Float score,
+            String body,
+            LocalDateTime createdAt
+    ){}
 }
