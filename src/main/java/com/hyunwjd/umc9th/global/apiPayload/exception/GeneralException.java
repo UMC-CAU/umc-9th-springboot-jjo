@@ -6,7 +6,6 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-
 public class GeneralException extends RuntimeException {
-    private final BaseErrorCode errorcode;
+    private final BaseErrorCode code;
 }
