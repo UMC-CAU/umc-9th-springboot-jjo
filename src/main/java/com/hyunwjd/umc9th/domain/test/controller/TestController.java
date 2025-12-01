@@ -2,10 +2,8 @@ package com.hyunwjd.umc9th.domain.test.controller;
 
 import com.hyunwjd.umc9th.domain.test.converter.TestConverter;
 import com.hyunwjd.umc9th.domain.test.dto.res.TestResDTO;
-import com.hyunwjd.umc9th.domain.test.exception.TestException;
 import com.hyunwjd.umc9th.domain.test.service.query.TestQueryService;
 import com.hyunwjd.umc9th.global.apiPayload.ApiResponse;
-import com.hyunwjd.umc9th.global.apiPayload.code.GeneralErrorCode;
 import com.hyunwjd.umc9th.global.apiPayload.code.GeneralSuccessCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

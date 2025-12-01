@@ -15,7 +15,7 @@ public class MissionConverter {
                 .completeCondition(mission.getCompleteCondition())
                 .storeName(store.getName())
                 .isComplete(mm.isComplete())
-                .completedAt(mm.getCompletedAt() != null ? mm.getCompletedAt().toLocalDate() : null)
+                .completedAt(mm.getCompletedAt() != null ? mm.getCompletedAt() : null)
                 .createdAt(mm.getCreatedAt())
                 .updatedAt(mm.getUpdatedAt())
                 .build();

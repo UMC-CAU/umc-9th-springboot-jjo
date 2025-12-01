@@ -1,4 +1,4 @@
-package com.hyunwjd.umc9th.domain.review.dto.req;
+package com.hyunwjd.umc9th.domain.review.dto;
 
 import lombok.*;
 

@@ -19,7 +19,7 @@ public class MissionQueryServiceImpl implements MissionQueryService {
     public Page<MissionResDTO> getMyMissions(Long memberId, MissionStatusFilter status, Pageable pageable) {
 
 
-        Page<MemberMission> page;
+        Page<MemberMission> page = null;
 
         switch (status) {
             case COMPLETED ->
