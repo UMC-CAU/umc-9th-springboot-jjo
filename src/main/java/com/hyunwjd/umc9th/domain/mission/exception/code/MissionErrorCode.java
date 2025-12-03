@@ -16,6 +16,10 @@ public enum MissionErrorCode implements BaseErrorCode {
     MISSION_ALREADY_IN_PROGRESS(HttpStatus.BAD_REQUEST,
             "MISSION400_1",
             "이미 도전 중인 미션입니다."),
+
+    MISSION_ALREADY_COMPLETED(HttpStatus.BAD_REQUEST,
+            "MISSION400_1",
+            "이미 도전 완료된 미션입니다."),
     ;
 
     private final HttpStatus status;

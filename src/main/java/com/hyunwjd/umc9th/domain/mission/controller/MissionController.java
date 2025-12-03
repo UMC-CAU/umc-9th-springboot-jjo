@@ -11,6 +11,7 @@ import com.hyunwjd.umc9th.global.apiPayload.ApiResponse;
 import com.hyunwjd.umc9th.global.apiPayload.code.GeneralSuccessCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.data.domain.Pageable;
@@ -22,6 +23,7 @@ public class MissionController {
     private final MissionCommandService missionCommandService;
     private final MissionQueryService missionQueryService;
 
+    //미션 도전 API
     @PostMapping("/{missionId}/challenge")
     public ApiResponse<MemberMissionResDTO.ChallengeResult> challengeMission(
             @PathVariable Long missionId,
@@ -35,19 +37,31 @@ public class MissionController {
         );
     }
 
-
+    //내가 진행중인 미션 조회 API -> MissionStatusFilter를 적용했기 때문에 진행완료한 미션 조회도 가능함
     @GetMapping("/my-page/missions")
-    public ApiResponse<Page<MissionResDTO>> getMyMissions(
+    public ApiResponse<Page<MissionResDTO.MissionPreviewDTO>> getMyMissions(
             @PathVariable Long memberId,
         @RequestParam(defaultValue = "ALL") MissionStatusFilter status,
-            Pageable pageable
+            Integer page
     ) {
-        Page<MissionResDTO> page = missionQueryService.getMyMissions(memberId, status, pageable);
 
-        return ApiResponse.onSuccess(
-                GeneralSuccessCode.OK,
-                page
-        );
+
+        Pageable pageable = PageRequest.of(page - 1, 10);  // 한 페이지 10개
+        Page<MissionResDTO.MissionPreviewDTO> result = missionQueryService.getMyMissions(memberId, status, pageable);
+        return ApiResponse.onSuccess(GeneralSuccessCode.OK, result);
+    }
+
+    //미션 완료 API
+    // 진행 중인 미션 완료 처리
+    @PatchMapping("/{missionId}/complete")
+    public ApiResponse<MissionResDTO.MissionDetailDTO> completeMission(
+            @PathVariable Long missionId,
+            @RequestParam Long memberId   // 나중엔 토큰에서 꺼내기
+    ) {
+        MissionResDTO.MissionDetailDTO result =
+                missionCommandService.completeMission(memberId, missionId);
+
+        return ApiResponse.onSuccess(GeneralSuccessCode.OK, result);
     }
 
 }

@@ -10,7 +10,7 @@ public class MemberMissionConverter {
                 .memberId(mm.getMember().getId())
                 .missionId(mm.getMission().getId())
                 .storeId(mm.getMission().getStore().getId())
-                .isComplete(mm.isComplete())
+                .isComplete(mm.isCompleted())
                 .completedAt(mm.getCompletedAt())
                 .createdAt(mm.getCreatedAt())
                 .build();

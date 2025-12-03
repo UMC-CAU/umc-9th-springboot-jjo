@@ -31,7 +31,7 @@ public class Review extends BaseEntity {
     private String text;
 
     @Column(name = "star_grade", nullable = false)
-    private Integer starGrade;
+    private Float starGrade;
 
 
     // FK: store_id

@@ -7,7 +7,9 @@ import org.springframework.data.domain.Pageable;
 
 public interface MissionQueryService {
     // 내가 참여한 미션 조회
-    Page<MissionResDTO> getMyMissions(Long memberId,
-                                      MissionStatusFilter status,
-                                      Pageable pageable);
+    Page<MissionResDTO.MissionPreviewDTO> getMyMissions(
+            Long memberId,
+            MissionStatusFilter status,
+            Pageable pageable
+    );
 }

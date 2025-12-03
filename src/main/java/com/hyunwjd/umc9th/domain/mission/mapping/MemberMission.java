@@ -38,8 +38,13 @@ public class MemberMission extends BaseEntity {
 
     @Setter
     @Column(name = "is_complete", nullable = false)
-    private boolean isComplete;
+    private boolean isCompleted;
 
     @Column(name = "completed_at")
     private LocalDateTime completedAt;
+
+    public void complete() {
+        this.isCompleted = true;
+        this.completedAt = LocalDateTime.now();
+    }
 }

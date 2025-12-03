@@ -13,10 +13,8 @@ public class ReviewReqDTO {
     @Builder
     public static class CreateReview {
 
-        private Integer starGrade;
-
+        private Float starGrade;
         private String text;
-
         // 사진 URL 리스트 (선택)
         private List<String> photoUrls;
     }
