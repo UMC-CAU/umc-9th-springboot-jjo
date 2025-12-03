@@ -10,7 +10,9 @@ import com.hyunwjd.umc9th.domain.member.exception.code.FoodErrorCode;
 import com.hyunwjd.umc9th.domain.member.repository.FoodRepository;
 import com.hyunwjd.umc9th.domain.member.repository.MemberFoodRepository;
 import com.hyunwjd.umc9th.domain.member.repository.MemberRepository;
+import com.hyunwjd.umc9th.domain.auth.enums.Role;
 import lombok.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +22,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class MemberCommandServiceImpl implements MemberCommandService {
-
+    private final PasswordEncoder passwordEncoder;
     private final MemberRepository memberRepository;
     //[아직 미구현]
     private final MemberFoodRepository memberFoodRepository;
@@ -31,8 +33,11 @@ public class MemberCommandServiceImpl implements MemberCommandService {
     public MemberResDTO.JoinDTO signup(
             MemberReqDTO.JoinDTO dto
     ) {
+        // 솔트된 비밀번호 생성
+        String salt = passwordEncoder.encode(dto.password());
+
         // 사용자 생성
-        Member member = MemberConverter.toMember(dto);
+        Member member = MemberConverter.toMember(dto, salt, Role.ROLE_USER);
         // DB 적용
         memberRepository.save(member);
 

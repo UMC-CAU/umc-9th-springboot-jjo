@@ -114,7 +114,7 @@ public class ReviewQueryServiceImpl implements ReviewQueryService {
             double to   = (bucket == 5) ? 5.000001 : bucket + 1;
 
             if (bucket == 5) {
-                builder.and(review.starGrade.eq((int) 5.0));
+                builder.and(review.starGrade.eq(5.0F));
             } else {
                 builder.and(review.starGrade.goe(from)
                         .and(review.starGrade.lt(to)));

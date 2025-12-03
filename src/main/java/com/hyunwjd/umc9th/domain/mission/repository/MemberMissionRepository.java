@@ -4,16 +4,17 @@ import com.hyunwjd.umc9th.domain.mission.mapping.MemberMission;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
-
+@Repository
 public interface MemberMissionRepository extends JpaRepository<MemberMission, Long> {
 
     // 미션 조회
     @Query("""
     SELECT 
         COUNT(m),
-        SUM(CASE WHEN m.isComplete = true THEN 1 ELSE 0 END)
+        SUM(CASE WHEN m.isCompleted = true THEN 1 ELSE 0 END)
     FROM MemberMission m
     WHERE m.member.id = :memberId
 """)

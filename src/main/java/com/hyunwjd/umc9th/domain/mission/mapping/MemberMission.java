@@ -37,7 +37,7 @@ public class MemberMission extends BaseEntity {
     private Mission mission;
 
     @Setter
-    @Column(name = "is_complete", nullable = false)
+    @Column(name = "is_completed", nullable = false)
     private boolean isCompleted;
 
     @Column(name = "completed_at")

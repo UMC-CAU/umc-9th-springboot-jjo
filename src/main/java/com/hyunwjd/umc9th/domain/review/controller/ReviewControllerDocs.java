@@ -2,6 +2,8 @@ package com.hyunwjd.umc9th.domain.review.controller;
 
 import com.hyunwjd.umc9th.domain.review.dto.ReviewResDTO;
 import com.hyunwjd.umc9th.global.apiPayload.ApiResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 public interface ReviewControllerDocs {
     @Operation(

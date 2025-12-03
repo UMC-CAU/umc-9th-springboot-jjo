@@ -1,19 +1,21 @@
 package com.hyunwjd.umc9th.domain.member.repository;
 
 import com.hyunwjd.umc9th.domain.member.entity.Member;
-import com.hyunwjd.umc9th.domain.mission.mapping.MemberMission;
-import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+@Repository
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
     // [조회] 회원 단일 조회 (memberId로)
     Optional<Member> findById(Long memberId);
     //^^^^^^존재하는 회원인지 검증하기 위해 Optional로 감싸서 반환
+
+    Optional<Member> findByEmail(String email);
 
     // [조회] 회원 + 미션 + 포인트 통계 조회
     @Query("""
@@ -31,7 +33,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
            MOD(COUNT(DISTINCT mm.mission.id), 10)
     FROM MemberMission mm
     WHERE mm.member.id = :memberId
-      AND mm.isComplete = true
+      AND mm.isCompleted = true
 """)
     Object[] findCompletionStatsByMember(@Param("memberId") Long memberId);
 

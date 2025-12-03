@@ -8,8 +8,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
-
+@Repository
 public interface MissionRepository extends JpaRepository<Mission, Long> {
     // [조회] 회원의 전체 미션 조회
 
@@ -25,7 +26,7 @@ public interface MissionRepository extends JpaRepository<Mission, Long> {
                MOD(COUNT(DISTINCT mm.mission.id), 10)
         FROM MemberMission mm
         WHERE mm.member.id = :memberId
-          AND mm.isComplete = true
+          AND mm.isCompleted = true
         """)
     Object[] findCompletionStatsByMember(@Param("memberId") Long memberId);
 

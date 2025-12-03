@@ -4,6 +4,7 @@ import com.hyunwjd.umc9th.domain.location.Location;
 import com.hyunwjd.umc9th.domain.member.entity.mapping.MemberFood;
 import com.hyunwjd.umc9th.domain.member.enums.SocialType;
 import com.hyunwjd.umc9th.domain.member.enums.MemberStatus;
+import com.hyunwjd.umc9th.domain.auth.enums.Role;
 import com.hyunwjd.umc9th.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -39,8 +40,14 @@ public class Member extends BaseEntity {
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
 
-    @Column(name = "email", nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @Column(name = "phone_number")
     private String phoneNumber;

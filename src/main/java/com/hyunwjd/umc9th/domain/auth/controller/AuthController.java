@@ -5,6 +5,7 @@ import com.hyunwjd.umc9th.domain.member.dto.res.MemberResDTO;
 import com.hyunwjd.umc9th.domain.member.exception.code.MemberSuccessCode;
 import com.hyunwjd.umc9th.domain.member.service.command.MemberCommandService;
 import com.hyunwjd.umc9th.global.apiPayload.ApiResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +20,7 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ApiResponse<MemberResDTO.JoinDTO> signup(
-            @RequestBody MemberReqDTO.JoinDTO dto
+            @RequestBody @Valid MemberReqDTO.JoinDTO dto
     ) {
         return ApiResponse.onSuccess(
                 MemberSuccessCode.FOUND,

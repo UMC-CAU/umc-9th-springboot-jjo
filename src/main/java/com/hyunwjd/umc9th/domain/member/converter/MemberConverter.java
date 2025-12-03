@@ -6,10 +6,9 @@ import com.hyunwjd.umc9th.domain.member.entity.Member;
 import com.hyunwjd.umc9th.domain.mission.entity.Mission;
 import com.hyunwjd.umc9th.domain.mission.mapping.MemberMission;
 import com.hyunwjd.umc9th.domain.store.entity.Store;
-import lombok.NoArgsConstructor;
+import com.hyunwjd.umc9th.domain.auth.enums.Role;
 import lombok.RequiredArgsConstructor;
 
-import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,7 +39,7 @@ public class MemberConverter {
                 .complete_condition(mission.getCompleteCondition())
                 // 가게 이름 = store_name
                 .store_name(store.getName())        // DTO에 storeName 추가했다는 가정
-                .isComplete(mm.isComplete())
+                .isComplete(mm.isCompleted())
                 .completedAt(mm.getCompletedAt())
                 .createdAt(mm.getCreatedAt())
                 .updateAt(mm.getUpdatedAt())
@@ -79,10 +78,15 @@ public class MemberConverter {
 
     // DTO -> Entity
     public static Member toMember(
-            MemberReqDTO.JoinDTO dto
+            MemberReqDTO.JoinDTO dto,
+            String password,
+            Role role
     ){
         return Member.builder()
                 .name(dto.name())
+                .email(dto.email())
+                .password(password)
+                .role(role)
                 .birthDate(dto.birthDate())
                 .location(dto.location())
                 .gender(dto.gender())
